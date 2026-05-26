@@ -1,0 +1,37 @@
+classDiagram
+    class InventoryOperations {
+        <<interface>>
+        +addItem(item: InventoryItem)
+        +readItems()
+        +updateItem(name: String, newQuantity: int)
+        +deleteItem(name: String)
+    }
+
+    class InventoryManagementSystem {
+        -inventory: List~InventoryItem~
+        +InventoryManagementSystem()
+        +main(args: String[])
+        +interactiveMenu()
+        +addItem(item: InventoryItem)
+        +readItems()
+        +updateItem(name: String, newQuantity: int)
+        +deleteItem(name: String)
+        -addItemPrompt(scanner: Scanner)
+        -updateItemPrompt(scanner: Scanner)
+        -deleteItemPrompt(scanner: Scanner)
+    }
+
+    class InventoryItem {
+        -name: String
+        -price: double
+        -quantity: int
+        +InventoryItem(name: String, price: double, quantity: int)
+        +getName() String
+        +getPrice() double
+        +getQuantity() int
+        +setQuantity(quantity: int)
+        +toString() String
+    }
+
+    InventoryOperations <|.. InventoryManagementSystem : implements
+    InventoryManagementSystem --> InventoryItem : uses/contains
